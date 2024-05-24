@@ -1,0 +1,21 @@
+1. Pet owner
+- can log in
+- can view all of his pet's data: age, weight, food specifications, medical history
+- can upload documents for a pet
+- can create an appointment
+- can look up stuff he doesn't know in there animal's profile with AI
+- can get summaries and explanations of documents with AI
+- based on the animal's profile, get recommendations
+
+2. Vet
+- can create an account for a new patient
+- can accept appointments 
+- can leave recommendations for an appointment
+- can modify an animal's history and profile
+
+Nice to have:
+- can track an animal's progress throughout a disease (owner and vet)
+
+Backend: Flask, Postgres
+Frontend: Angular s
+
