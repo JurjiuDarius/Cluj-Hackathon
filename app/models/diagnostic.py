@@ -77,6 +77,7 @@ class Diagnostic(db.Model):
     doctor_id = db.Column(db.Integer, db.ForeignKey("doctor.id"))
 
     pet_id = db.Column(db.Integer, db.ForeignKey("pet.id"))
+    pet = db.relationship("Pet", back_populates="diagnostics")
 
     doctor = db.relationship("Doctor", back_populates="diagnostics")
 

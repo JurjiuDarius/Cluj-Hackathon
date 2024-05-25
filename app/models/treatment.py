@@ -16,6 +16,8 @@ class TreatmentStage(db.Model):
 
     treatment_plan_id = db.Column(db.Integer, db.ForeignKey("treatment_plan.id"))
 
+    treatment_plan = db.relationship("TreatmentPlan", back_populates="stages")
+
     completed = db.Column(db.Boolean)
 
     description = db.Column(db.String(100))
@@ -31,7 +33,7 @@ class TreatmentStage(db.Model):
         self.date_created = date_created
         self.date_updated = date_updated
         self.description = description
-        
+
     def serialize(self):
         return {
             "id": self.id,
@@ -40,6 +42,7 @@ class TreatmentStage(db.Model):
             "completed": self.completed,
             "description": self.description,
         }
+
 
 class TreatmentPlan(db.Model):
     __tablename__ = "treatment_plan"
@@ -67,7 +70,6 @@ class TreatmentPlan(db.Model):
         end_date=None,
         diagnostic=None,
         pet_id=None,
-
     ):
         self.owner_id = owner_id
         self.start_date = start_date

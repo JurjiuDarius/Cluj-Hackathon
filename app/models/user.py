@@ -14,6 +14,8 @@ class Owner(db.Model):
     pets = db.relationship("Pet", back_populates="owner")
     doctor = db.relationship("Doctor", back_populates="owners")
 
+    appointments = db.relationship("Appointment", back_populates="owner")
+
     doctors_owners = db.Table(
         "doctors_owners",
         db.Column(
@@ -23,7 +25,6 @@ class Owner(db.Model):
     )
 
     def __init__(self, email=None, password=None):
-        super().__init__(email)
         self.email = email
         self.password = password
 
@@ -43,6 +44,7 @@ class Doctor(db.Model):
 
     password = db.Column(db.String(300))
 
+    appointments = db.relationship("Appointment", back_populates="doctor")
     diagnostics = db.relationship("Diagnostic", back_populates="doctor")
     owners = db.relationship(
         "Owner",
@@ -51,7 +53,6 @@ class Doctor(db.Model):
     )
 
     def __init__(self, email=None, password=None):
-        super().__init__(email)
         self.email = email
         self.password = password
 

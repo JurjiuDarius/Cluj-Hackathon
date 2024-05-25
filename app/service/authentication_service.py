@@ -15,7 +15,7 @@ def login(data):
         query_class = Doctor
 
     user = query_class.query.filter_by(email=email).first()
-    if not user or not user.is_active:
+    if not user:
         return {"message": "User not found!"}, 404
     hashed_password = hashlib.sha256(password.encode()).hexdigest()
     if not hashed_password == user.password:
@@ -37,6 +37,9 @@ def sign_up(data):
         query_class = Owner
     elif role == "doctor":
         query_class = Doctor
+    else:
+        return {"message": "Invalid role!"}, 400
+
     user = query_class.query.filter_by(email=email).first()
     if user:
         return {"message": "User already exists!"}, 409
@@ -44,13 +47,11 @@ def sign_up(data):
         new_user = Owner(
             email=email,
             password=hashed_password,
-            is_active=True,
         )
     elif role == "doctor":
         new_user = Doctor(
             email=email,
             password=hashed_password,
-            is_active=False,
         )
     db.session.add(new_user)
     db.session.commit()

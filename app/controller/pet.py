@@ -6,7 +6,7 @@ from app.utils.jwt import check_authorization
 pet_bp = Blueprint("pet", __name__, url_prefix="/pet")
 
 
-@document_bp.route("/<int:owner_id>", methods=["GET"])
+@pet_bp.route("/<int:owner_id>", methods=["GET"])
 @check_authorization(role=["doctor", "owner"])
 def get_pets_for_owner(pet_id):
     authorization = request.headers.get("Authorization")
@@ -15,7 +15,7 @@ def get_pets_for_owner(pet_id):
     return make_response(jsonify(response), status_code)
 
 
-@document_bp.route(">", methods=["POST"])
+@pet_bp.route("", methods=["POST"])
 @check_authorization(role=["doctor", "owner"])
 def add_pet_for_owner():
     authorization = request.headers.get("Authorization")
