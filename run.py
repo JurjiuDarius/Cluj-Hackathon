@@ -6,6 +6,7 @@ from flask_migrate import Migrate
 
 import app.models as models
 from app.controller import blueprints
+from app.service import chat_service
 from database import db
 
 
