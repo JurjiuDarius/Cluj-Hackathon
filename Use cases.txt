@@ -8,7 +8,7 @@
 - based on the animal's profile, get recommendations
 
 2. Vet
-- can create an account for a new patient
+- can create an account for a new owner
 - can accept appointments 
 - can leave recommendations for an appointment
 - can modify an animal's history and profile
