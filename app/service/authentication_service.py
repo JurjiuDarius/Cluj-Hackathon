@@ -28,19 +28,9 @@ def sign_up(data):
     user = data.get("user")
     role = data.get("role")
     password = user.get("password")
-    first_name = user.get("firstName")
-    last_name = user.get("lastName")
     email = user.get("email")
-    phone_number = user.get("phone")
-    city = user.get("city")
-    birth_date = user.get("birthDate")
-    education = user.get("education")
-    hashed_password = hashlib.sha256(password.encode()).hexdigest()
 
-    if birth_date > "2003-01-01":
-        return {"message": "You must be at least 18 years old to register!"}, 400
-    if birth_date < "1900-01-01":
-        return {"message": "Invalid birth date!"}, 400
+    hashed_password = hashlib.sha256(password.encode()).hexdigest()
     if ("@" not in email) or ("." not in email):
         return {"message": "Invalid email!"}, 400
     if role == "owner":
@@ -52,25 +42,14 @@ def sign_up(data):
         return {"message": "User already exists!"}, 409
     if role == "owner":
         new_user = Owner(
-            first_name=first_name,
-            last_name=last_name,
             email=email,
             password=hashed_password,
-            phone_number=phone_number,
-            city=city,
-            birth_date=birth_date,
             is_active=True,
         )
     elif role == "doctor":
         new_user = Doctor(
-            first_name=first_name,
-            last_name=last_name,
             email=email,
             password=hashed_password,
-            phone_number=phone_number,
-            city=city,
-            education=education,
-            birth_date=birth_date,
             is_active=False,
         )
     db.session.add(new_user)

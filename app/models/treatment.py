@@ -12,6 +12,8 @@ class TreatmentStage(db.Model):
 
     id = mapped_column(db.Integer, primary_key=True, autoincrement=True)
 
+    stage_number = db.Column(db.Integer)
+
     treatment_plan_id = db.Column(db.Integer, db.ForeignKey("treatment_plan.id"))
 
     completed = db.Column(db.Boolean)

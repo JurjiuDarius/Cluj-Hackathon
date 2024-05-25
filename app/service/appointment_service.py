@@ -1,7 +1,6 @@
 from database import db
 
 from ..models.diagnostic import Appointment
-from ..models.user import Doctor, Owner
 
 
 def get_all_appointments_for_owner(owner_id):
@@ -59,7 +58,6 @@ def delete_appointment(appointment_id):
     appointment = Appointment.query.get(appointment_id)
     db.session.delete(appointment)
     db.session.commit()
-
 
 def update_appointment(id, data):
     try:
