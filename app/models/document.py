@@ -25,3 +25,12 @@ class Document(db.Model):
         self.owner_id = owner_id
         self.date_created = date_created
         self.file_path = file_path
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "image": self.image,
+            "ownerId": self.owner_id,
+            "dateCreated": self.date_created,
+            "filePath": self.file_path,
+        }
