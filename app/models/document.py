@@ -1,3 +1,7 @@
+import datetime
+
+from sqlalchemy import DateTime
+
 from database import db
 
 
@@ -12,25 +16,29 @@ class Document(db.Model):
 
     file_path = db.Column(db.String(100))
 
-    date_created = db.Column(db.DateTime)
+    file_name = db.Column(db.String(100))
+
+    date_created = db.Column(DateTime, default=datetime.datetime.utcnow)
 
     def __init__(
         self,
-        image=None,
         owner_id=None,
+        pet_id=None,
         date_created=None,
         file_path=None,
+        file_name=None,
     ):
-        self.image = image
         self.owner_id = owner_id
+        self.pet_id = pet_id
         self.date_created = date_created
         self.file_path = file_path
+        self.file_name = file_name
 
     def serialize(self):
         return {
             "id": self.id,
-            "image": self.image,
             "ownerId": self.owner_id,
+            "petId": self.pet_id,
             "dateCreated": self.date_created,
             "filePath": self.file_path,
         }

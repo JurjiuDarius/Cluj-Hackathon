@@ -33,10 +33,12 @@ def update_treatment(updated_data):
     doctor_id = updated_data["doctorId"]
     pet_id = updated_data["imageUploadId"]
     current_stage = updated_data["currentStage"]
+    diagnostic = updated_data["diagnostic"]
 
     treatment.doctor_id = doctor_id
     treatment.pet_id = pet_id
     treatment.current_stage = current_stage
+    treatment.diagnostic = diagnostic
 
     db.session.commit()
     return treatment.serialize(), 201

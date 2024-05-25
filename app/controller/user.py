@@ -1,6 +1,5 @@
 from flask import Blueprint, jsonify, make_response, request
 
-from app.models import Doctor, db
 from app.service import user_service
 from app.utils.jwt import check_authorization
 
