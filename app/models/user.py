@@ -42,6 +42,8 @@ class Doctor(db.Model):
 
     email = db.Column(db.String(100))
 
+    name = db.Column(db.String(100))
+
     password = db.Column(db.String(300))
 
     appointments = db.relationship("Appointment", back_populates="doctor")
@@ -52,12 +54,10 @@ class Doctor(db.Model):
         back_populates="doctor",
     )
 
-    def __init__(self, email=None, password=None):
+    def __init__(self, email=None, name=None, password=None):
         self.email = email
         self.password = password
+        self.name = name
 
     def serialize(self):
-        return {
-            "id": self.id,
-            "email": self.email,
-        }
+        return {"id": self.id, "email": self.email, "name": self.name}

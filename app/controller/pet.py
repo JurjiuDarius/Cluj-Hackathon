@@ -8,10 +8,10 @@ pet_bp = Blueprint("pet", __name__, url_prefix="/pet")
 
 @pet_bp.route("/<int:owner_id>", methods=["GET"])
 @check_authorization(role=["doctor", "owner"])
-def get_pets_for_owner(pet_id):
+def get_pets_for_owner(owner_id):
     authorization = request.headers.get("Authorization")
     jwt_token = authorization.split(" ")[1]
-    response, status_code = pet_service.get_pets_for_owner(pet_id, jwt_token)
+    response, status_code = pet_service.get_pets_for_owner(owner_id, jwt_token)
     return make_response(jsonify(response), status_code)
 
 

@@ -65,3 +65,7 @@ def get_user_by_id(user_id, authorization):
     if not user:
         return {"message": "User not found"}, 404
     return user.serialize(), 200
+
+def get_all_doctors():
+    doctors = Doctor.query.all()
+    return [doctor.serialize() for doctor in doctors], 200

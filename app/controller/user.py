@@ -13,6 +13,13 @@ def get_owners(doctor_id):
     return make_response(jsonify(owners), status_code)
 
 
+@user_bp.route("/all-doctors", methods=["GET"])
+@check_authorization(role=["doctor", "owner"])
+def get_doctors():
+    owners, status_code = user_service.get_all_doctors()
+    return make_response(jsonify(owners), status_code)
+
+
 @user_bp.route("/add-owner/<int:doctor_id>", methods=["POST"])
 @check_authorization(role="doctor")
 def add_owner(doctor_id):
